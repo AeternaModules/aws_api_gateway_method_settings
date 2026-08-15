@@ -16,7 +16,7 @@ output "api_gateway_method_settings_rest_api_id" {
 }
 output "api_gateway_method_settings_settings" {
   description = "Map of settings values across all api_gateway_method_settings, keyed the same as var.api_gateway_method_settings"
-  value       = { for k, v in aws_api_gateway_method_settings.api_gateway_method_settings : k => v.settings if v.settings != null && length(v.settings) > 0 }
+  value       = { for k, v in aws_api_gateway_method_settings.api_gateway_method_settings : k => one(v.settings) if v.settings != null && length(v.settings) > 0 }
 }
 output "api_gateway_method_settings_stage_name" {
   description = "Map of stage_name values across all api_gateway_method_settings, keyed the same as var.api_gateway_method_settings"
